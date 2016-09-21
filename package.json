@@ -1,0 +1,24 @@
+{
+  "name": "kosmtik-mbtiles-source",
+  "version": "0.0.1",
+  "description": "Use an MBTiles file as a source for a vector tile based probject in kosmtik",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "kosmtik",
+    "mbtiles",
+    "map"
+  ],
+  "author": "Jesse Crocker",
+  "license": "WTFPL",
+  "dependencies": {
+    "mbtiles": "^0.8.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JesseCrocker/kosmtik-mbtiles-source.git"
+  },
+  "kosmtik": ">=0.0.13"
+}
