@@ -29,7 +29,7 @@ Plugin.prototype.patchMML = function(e) {
             query: 'tile={z}/{x}/{y}',
             id: id
         };
-        source.url = this._template('http://{host}:{port}/mbtiles/{id}/?{query}', params);
+        source.url = this._template('http://{host}:{port}/mbtiles/?{query}&id={id}', params);
 
         this.config.log("Attaching MBTiles " + path);
         new MBTiles("file:///" + path, function(err, source) {
@@ -37,8 +37,14 @@ Plugin.prototype.patchMML = function(e) {
                 mbtilesSource.config.log("Error loading mbtiles" + err);
             } else {
                 mbtilesSource.config.log("Loaded MBTiles id:" + id);
+                source.getInfo(function(err, info) {
+                    if(info) {
+                        e.project.mml.sourceMaxzoom = Math.min(info.maxzoom, e.project.mml.sourceMaxzoom || 100);
+                    }
+                });
             }
             mbtilesSource.mbtiles[id] = source;
+            e.continue();
         });
     }
 };
